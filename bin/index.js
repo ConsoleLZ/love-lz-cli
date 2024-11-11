@@ -8,7 +8,7 @@ const path = require("path");
 const gitClone = require("git-clone");
 const ora = require("ora");
 // 项目列表
-const projectList = require("./config.ts")
+const projectList = require("./config.js")
 const choices = []
 for(let key in projectList){
   choices.push({
