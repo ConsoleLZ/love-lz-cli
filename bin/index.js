@@ -9,6 +9,13 @@ const gitClone = require("git-clone");
 const ora = require("ora");
 // 项目列表
 const projectList = require("./config.ts")
+const choices = []
+for(let key in projectList){
+  choices.push({
+    name: key,
+    value: key
+  })
+}
 // 首行提示
 program.name("lz-cli").usage("<command> [options]");
 
@@ -43,12 +50,7 @@ program
         message: "选择要创建的项目",
         default: "vueRouter",
         name: "framework",
-        choices: [
-          {
-            name: "vueRouter",
-            value: "vueRouter",
-          }
-        ],
+        choices
       }
     ]);
     const key = result.framework
