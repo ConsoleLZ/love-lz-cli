@@ -56,12 +56,22 @@ program
     const key = result.framework
     const gitUrl = projectList[key];
     const spinner = ora("正在下载模板...").start();
-    gitClone(gitUrl, appName, { checkout: "main" }, () => {
-      spinner.succeed(chalk.blue.bold("项目创建成功"));
-      console.log("");
-      console.log(chalk.blue.bold(figlet.textSync("lz-cli", {})));
-      console.log(chalk.blue("感谢您的使用!"));
-    });
+    try {
+      gitClone(gitUrl, appName, { checkout: "main" }, (err) => {
+        if (err) {
+          spinner.fail(chalk.red.bold("项目创建失败"));
+          console.log(chalk.red("错误信息: " + err.message));
+          return;
+        }
+        spinner.succeed(chalk.blue.bold("项目创建成功"));
+        console.log("");
+        console.log(chalk.blue.bold(figlet.textSync("lz-cli", {})));
+        console.log(chalk.blue("感谢您的使用!"));
+      });
+    } catch (error) {
+      spinner.fail(chalk.red.bold("项目创建失败"));
+      console.log(chalk.red("错误信息: " + error.message));
+    }
   });
 
 // 版本号
@@ -73,4 +83,3 @@ program.on("--help", () => {
 });
 
 program.parse(program.argv);
-
