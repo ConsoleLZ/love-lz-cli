@@ -4,6 +4,7 @@ const projectList = {
     vueTsTemplate: "https://github.com/ConsoleLZ/vue-ts-template.git",
     reactTsTemplate: "https://github.com/ConsoleLZ/react-ts-temp.git",
     reactRouterTsTemplate: "https://github.com/ConsoleLZ/react-router-ts-temp.git",
+    vercelNode: "https://github.com/ConsoleLZ/vercel-node.git",
 };
 
 module.exports = projectList;
