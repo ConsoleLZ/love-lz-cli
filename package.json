@@ -1,6 +1,6 @@
 {
   "name": "love-lz-cli",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "小哲的个人脚手架",
   "main": "index.js",
   "bin": {

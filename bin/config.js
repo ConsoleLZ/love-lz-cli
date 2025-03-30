@@ -5,6 +5,7 @@ const projectList = {
     reactTsTemplate: "https://github.com/ConsoleLZ/react-ts-temp.git",
     reactRouterTsTemplate: "https://github.com/ConsoleLZ/react-router-ts-temp.git",
     vercelNode: "https://github.com/ConsoleLZ/vercel-node.git",
+    platformioSTM32: "https://github.com/ConsoleLZ/platformioSTM32.git"
 };
 
 module.exports = projectList;
