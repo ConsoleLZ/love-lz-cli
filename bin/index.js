@@ -8,24 +8,26 @@ const path = require("path");
 const gitClone = require("git-clone");
 const ora = require("ora");
 // 项目列表
-const projectList = require("./config.js")
-const choices = []
-for(let key in projectList){
+const { projectList, codeUrl } = require("./config.js");
+
+const choices = [];
+projectList.forEach((item) => {
   choices.push({
-    name: key,
-    value: key
-  })
-}
+    name: item,
+    value: item,
+  });
+});
+
 // 首行提示
 program.name("lz-cli").usage("<command> [options]");
 
-console.log(chalk.black.bgWhite.bold('🎉🎉 欢迎使用小哲的个人脚手架'));
+console.log(chalk.black.bgWhite.bold("🎉🎉 欢迎使用小哲的个人脚手架"));
 
 // 添加命令
 program
   .command("create <app-name>")
   .description("创建一个项目")
-  .action(async appName => {
+  .action(async (appName) => {
     const targetPath = path.join(process.cwd(), appName);
     if (fs.existsSync(targetPath)) {
       const answer = await inquirer.prompt([
@@ -51,13 +53,12 @@ program
         default: "vueRouter",
         name: "framework",
         choices
-      }
+      },
     ]);
-    const key = result.framework
-    const gitUrl = projectList[key];
+    const codeName = result.framework;
     const spinner = ora("正在下载模板...").start();
     try {
-      gitClone(gitUrl, appName, { checkout: "main" }, (err) => {
+      gitClone(codeUrl, appName, { checkout: codeName }, (err) => {
         if (err) {
           spinner.fail(chalk.red.bold("项目创建失败"));
           console.log(chalk.red("错误信息: " + err.message));
